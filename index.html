@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sheets API | JavaScript</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <style>
+        html, body{
+            min-height:100%;
+            width:100%;
+        }
+        .table-holder{
+            width:100%;
+            max-height:65vh;
+            overflow:auto;
+        }
+        .table>thead{
+            position:sticky;
+            top:0;
+            background:white;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-gradient">
+        <div class="container">
+            <a class="navbar-brand" href="./">Google Sheets API</a>
+            <div>
+                <a href="https://sourcecodester.com" class="text-light fw-bolder h6 text-decoration-none" target="_blank">SourceCodester</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid px-5 my-3" id="SampleApp">
+        <div class="col-lg-6 col-md-10 col-sm-12 mx-auto">
+            <h3 class="text-center"><b>Reading Google Sheets using Google Sheets API and JavaScript</b></h3>
+            <div class="d-flex w-100 justify-content-center">
+                <hr class="w-50">
+            </div>
+            <div class="d-flex w-100 justify-content-between mb-3">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <button id="signin_btn" class="btn btn-sm btn-block w-100 btn-primary rounded-pill" type="button" onclick="GAuth()">Sign In</button>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <button id="signout_btn" class="btn btn-sm btn-block w-100 btn-danger rounded-pill" type="button" onclick="GAuthSignout()">Sign Out</button>
+                </div>
+            </div>
+            <div class="card rounded-0 shadow" id="dataSheetCard">
+                <div class="card-header rounded-0">
+                    <div class="d-flex w-100 justify-content-between">
+                        <div class="col-auto flex-shrink-1 flex-grow-1">
+                            <div class="card-title">Sample Data Sheet Data</div>
+                        </div>
+                        <div class="col-auto flex-shrink-1">
+                            <button class="btn btn-primary btn-sm rounded-0" type="button" onclick="ReloadDataSheet()">Reload Data</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body rounded-0">
+                    <div class="container-fluid">
+                        <div class="table-holder">
+                            <table class="table table-stripped table-bordered table-hover" id="contentTable"></table>
+                        </div>
+                        <div class="alert alert-danger" style="display:none" id="err_msg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script async defer src="https://apis.google.com/js/api.js" onload="GAPILoaded()"></script>
+    <script async defer src="https://accounts.google.com/gsi/client" onload="GSILoaded()"></script>
+    <script src="app.js"></script>
+</body>
+</html>
